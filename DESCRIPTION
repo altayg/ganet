@@ -1,0 +1,14 @@
+Package: ganet
+Type: Package
+Title: Global Assessment of NETwork Inference Algorithms Based on the
+        Available Literature of Gene/Protein Interactions
+Version: 2.4
+Date: 2018-03-27
+Author: Gokmen Altay
+Description: It allows performing globally assessing the inference performance of gene network inference algorithms over the available popular interaction databases. More databases will be added to the package considering the community feedback. Each database has its own license, please refer to the original license for the usage of the databases in this package. ganet comes with absolutely NO warranty.
+Maintainer: Gokmen Altay <altaylabs@gmail.com>
+License: GPL (>=3)
+Depends: R (>= 3.3.0), igraph, data.table
+LazyData: true
+NeedsCompilation: no
+Encoding: UTF-8
