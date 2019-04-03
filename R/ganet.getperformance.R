@@ -1,4 +1,4 @@
-ganet.getperformance <- function(PredictedNet=c(), allgenes=c() , literature=c())
+ganet.getperformance <- function(PredictedNet=c(), allgenes=c() , literature=c(), uppercase=FALSE)
 {#gives overlap analysis results easily. Assumes nPredicted has already unique interactions
   if(is.null(PredictedNet)) 	return(print("Enter the PredictedNet  argument for the predicted interactions in two columns."))
   if(is.null(allgenes)) 	return(print("Enter allgenes argument that are the set of unique genes while starting analysis and try again."))
@@ -8,13 +8,19 @@ ganet.getperformance <- function(PredictedNet=c(), allgenes=c() , literature=c()
   
   ###narrow down the reference list regarding our data
   CombinedDatabases <- as.data.table(CombinedDatabases)
+  if(uppercase){
+    CombinedDatabases[[1]] <- toupper(as.character(CombinedDatabases[[1]]))
+    CombinedDatabases[[2]] <- toupper(as.character(CombinedDatabases[[2]]))
+    allgenes <- toupper(as.character(allgenes))
+  }
+  # 
   CombinedDatabases <- CombinedDatabases[(V1 %in% allgenes) | (V2 %in% allgenes)]
   #
   nFocusedSet <- nrow(CombinedDatabases)
   ###
   nPredicted <- nrow(PredictedNet)
  
-  ValidatedNet <- ganet.ComLinks(PredictedNet,CombinedDatabases)
+  ValidatedNet <- ganet.ComLinks(PredictedNet,CombinedDatabases, uppercase=uppercase)
   nOverlap= nrow(ValidatedNet)
 
   

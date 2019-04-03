@@ -1,10 +1,10 @@
-ganet.UniqNetSimp <- function(netlist, directed = FALSE)
+ganet.UniqNetSimp <- function(netlist, directed = FALSE, uppercase=FALSE)
 {#1 and 2. columns are gene names and 3 is MI value, the rest is not important
   library(data.table)
   colnamesofnet <- colnames(netlist)
   netlist <- data.table(netlist)
-  netlist[[1]] <- as.character(netlist[[1]])
-  netlist[[2]] <- as.character(netlist[[2]])
+  if(uppercase) netlist[[1]] <- toupper(as.character(netlist[[1]])) else  netlist[[1]] <- as.character(netlist[[1]])
+  if(uppercase) netlist[[2]] <- toupper(as.character(netlist[[2]])) else  netlist[[2]] <- as.character(netlist[[2]])
   #
   netlist <- netlist[!( netlist[[1]]==netlist[[2]])] #remove dual links if any
   #
